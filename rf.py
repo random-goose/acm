@@ -3,29 +3,22 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
 
-# Load the 20 Newsgroup dataset
 newsgroup_train = fetch_20newsgroups(subset='train', shuffle=True)
 newsgroup_test = fetch_20newsgroups(subset='test', shuffle=True)
 
-# Extract data and target labels
 X_train, y_train = newsgroup_train.data, newsgroup_train.target
 X_test, y_test = newsgroup_test.data, newsgroup_test.target
 
-# Create a TF-IDF vectorizer
 vectorizer = TfidfVectorizer()
 X_train_tfidf = vectorizer.fit_transform(X_train)
 X_test_tfidf = vectorizer.transform(X_test)
 
-# Create a Random Forest classifier
 classifier = RandomForestClassifier(n_estimators=150, random_state=42)
 
-# Train the classifier
 classifier.fit(X_train_tfidf, y_train)
 
-# Make predictions
 y_pred = classifier.predict(X_test_tfidf)
 
-# Evaluate the model
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 
