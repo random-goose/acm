@@ -22,8 +22,6 @@ classifier.fit(X_train_tfidf, y_train)
 
 y_pred = classifier.predict(X_test_tfidf)
 
-accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy:", accuracy)
+print("Accuracy:", accuracy_score(y_test, y_pred))
 
-report = classification_report(y_test, y_pred, target_names=newsgroup_train.target_names)
-print("Classification Report:\n", report)
+print("Classification Report:\n", classification_report(y_test, y_pred, target_names=newsgroup_train.target_names))
